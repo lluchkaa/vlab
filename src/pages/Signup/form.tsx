@@ -1,6 +1,8 @@
 import React from 'react'
 import { useFormik } from 'formik'
 
+import { UserType } from '@typings/enums/User'
+
 import Values from './values'
 
 interface Props {
@@ -9,19 +11,25 @@ interface Props {
 
 const Form: React.FC<Props> = ({ onSubmit }) => {
   const {
-    values: { email, password },
+    values: { firstName, lastName, email, password },
     handleChange,
     handleSubmit,
   } = useFormik<Values>({
     initialValues: {
+      firstName: '',
+      lastName: '',
       email: '',
       password: '',
+      avatar: '',
+      type: UserType.student,
     },
     onSubmit,
   })
 
   return (
     <form onSubmit={handleSubmit}>
+      <input name="firstName" value={firstName} onChange={handleChange} />
+      <input name="lastName" value={lastName} onChange={handleChange} />
       <input name="email" value={email} onChange={handleChange} />
       <input
         name="password"
@@ -29,7 +37,7 @@ const Form: React.FC<Props> = ({ onSubmit }) => {
         onChange={handleChange}
         type="password"
       />
-      <button type="submit">aaa</button>
+      <button type="submit">signup</button>
     </form>
   )
 }
