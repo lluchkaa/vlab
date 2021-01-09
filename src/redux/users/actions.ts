@@ -40,7 +40,7 @@ const append = (
     if (users.find((user) => user.email === newUser.email)) {
       throw Error('Email already exists')
     }
-    dispatch(action(ActionType.APPEND_SUCCESS, users))
+    dispatch(action(ActionType.APPEND_SUCCESS, newUser))
     onSuccess?.(newUser)
   } catch (error) {
     dispatch(action(ActionType.APPEND_ERROR, error))
