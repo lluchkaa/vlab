@@ -16,7 +16,7 @@ const login = (
   password: string,
   _remember: boolean = false,
   onSuccess?: (user: User) => void,
-  onError?: (error: ErrorType) => void
+  onError?: ErrorCallback
 ): AppThunk<User> => async (dispatch) => {
   dispatch(action(ActionType.LOGIN_BEGIN))
 
@@ -41,8 +41,8 @@ const login = (
 }
 
 const logout = (
-  onSuccess?: () => void,
-  onError?: (error: ErrorType) => void
+  onSuccess?: Callback,
+  onError?: ErrorCallback
 ): AppThunk => async (dispatch) => {
   dispatch(action(ActionType.LOGOUT_BEGIN))
 

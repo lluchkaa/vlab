@@ -14,6 +14,10 @@ type PropType<Obj, Key extends keyof Obj> = Obj[Key]
 //*   someActions, dispatch
 //* )
 
+type BindedAsyncAction<T extends Function> = (
+  ...args: Parameters<T>
+) => ReturnType<ReturnType<T>>
+
 type BindedAsyncActions<Obj> = {
   [key in keyof Obj]: (
     ...args: Parameters<PropType<Obj, key>>
@@ -61,3 +65,6 @@ type InputType =
   | 'week'
 
 type ID = number
+
+type Callback = () => void
+type ErrorCallback = (error: ErrorType) => void
