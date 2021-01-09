@@ -1,0 +1,47 @@
+[
+  {
+    "id": 0,
+    "firstName": "Yura",
+    "lastName": "Luchka",
+    "email": "lluchkaa@gmail.com",
+    "avatar": "",
+    "type": "student",
+    "password": "123456"
+  },
+  {
+    "id": 1,
+    "firstName": "Anastastiia",
+    "lastName": "Tarasenko",
+    "email": "anastasiia123@gmail.com",
+    "avatar": "",
+    "type": "student",
+    "password": "123456"
+  },
+  {
+    "id": 2,
+    "firstName": "Maryna",
+    "lastName": "Diuh",
+    "email": "maryna123@gmail.com",
+    "avatar": "",
+    "type": "student",
+    "password": "123456"
+  },
+  {
+    "id": 3,
+    "firstName": "Ihor",
+    "lastName": "Piatnochka",
+    "email": "ihor123@gmail.com",
+    "avatar": "",
+    "type": "student",
+    "password": "123456"
+  },
+  {
+    "id": 4,
+    "firstName": "Anrii",
+    "lastName": "Famenka",
+    "email": "andre@gmail.com",
+    "avatar": "",
+    "type": "admin",
+    "password": "123456"
+  }
+]
