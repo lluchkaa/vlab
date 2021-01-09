@@ -9,7 +9,7 @@ import links from '@routes/links'
 import defaultLinks from './links'
 import { UserType, UserTypeLabel } from '@typings/enums/User'
 
-import Logo from '@assets/logo.svg'
+import Logo from '@assets/logo_wide.svg'
 import Avatar from '@assets/default-avatar.png'
 
 import styles from './styles.module.scss'

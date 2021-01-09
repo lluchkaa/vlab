@@ -6,7 +6,7 @@ import Link from '@components/Link'
 
 import links from '@routes/links'
 
-import Logo from '@assets/logo.svg'
+import Logo from '@assets/logo_wide_white.svg'
 
 import styles from './styles.module.scss'
 
