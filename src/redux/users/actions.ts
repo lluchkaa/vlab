@@ -14,13 +14,14 @@ const reset = (): AppThunk => (dispatch) => dispatch(action(ActionType.RESET))
 const load = (
   onSuccess?: Callback,
   onError?: ErrorCallback
-): AppThunk => async (dispatch) => {
+): AppThunk<UserModel[]> => async (dispatch, getState) => {
   dispatch(action(ActionType.LOADING_BEGIN))
   try {
     const users: UserModel[] = usersJson as UserModel[]
 
     dispatch(action(ActionType.LOADING_SUCCESS, users))
     onSuccess?.()
+    return getState().users.users
   } catch (error) {
     dispatch(action(ActionType.LOADING_ERROR, error))
     onError?.(error)
@@ -28,10 +29,10 @@ const load = (
 }
 
 const append = (
-  newUser: UserModel,
+  newUser: UserSignup,
   onSuccess?: (user: UserModel) => void,
   onError?: ErrorCallback
-): AppThunk => async (dispatch, getState) => {
+): AppThunk<UserModel> => async (dispatch, getState) => {
   dispatch(action(ActionType.APPEND_BEGIN))
   try {
     const {
@@ -40,8 +41,13 @@ const append = (
     if (users.find((user) => user.email === newUser.email)) {
       throw Error('Email already exists')
     }
-    dispatch(action(ActionType.APPEND_SUCCESS, newUser))
-    onSuccess?.(newUser)
+    const newUserModel: UserModel = {
+      ...newUser,
+      id: users.length,
+    }
+    dispatch(action(ActionType.APPEND_SUCCESS, newUserModel))
+    onSuccess?.(newUserModel)
+    return newUserModel
   } catch (error) {
     dispatch(action(ActionType.APPEND_ERROR, error))
     onError?.(error)

@@ -60,16 +60,23 @@ const logout = (
 }
 
 const signup = (
-  newUser: UserModel,
+  newUser: UserSignup,
   onSuccess?: Callback,
   onError?: ErrorCallback
 ): AppThunk => async (dispatch, getState, extra) => {
   dispatch(action(ActionType.SIGNUP_BEGIN))
 
   try {
-    await usersActions.append(newUser)(dispatch, getState, extra)
+    const newUserModel = await usersActions.append(newUser)(
+      dispatch,
+      getState,
+      extra
+    )
+    if (!newUserModel) {
+      throw Error('Something went wrong')
+    }
     onSuccess?.()
-    dispatch(action(ActionType.SIGNUP_SUCCESS, modelToUser(newUser)))
+    dispatch(action(ActionType.SIGNUP_SUCCESS, modelToUser(newUserModel)))
   } catch (error) {
     dispatch(action(ActionType.SIGNUP_ERROR, error))
     onError?.(error)

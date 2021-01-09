@@ -11,3 +11,4 @@ interface UserModel {
 }
 
 type User = Omit<UserModel, 'password'>
+type UserSignup = Omit<UserModel, 'id'>
