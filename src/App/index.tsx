@@ -11,6 +11,7 @@ import {
 } from '@services/configure'
 import useConstructor from '@hooks/useConstructor'
 import useLoadUsers from '@hooks/useLoadUsers'
+import Loader from '@common/Loader'
 
 type Props = {}
 
@@ -28,7 +29,7 @@ const App: React.FC<Props> = () => {
 
   const ready = useMemo(() => usersReady, [usersReady])
 
-  return ready ? <Routes /> : null
+  return ready ? <Routes /> : <Loader />
 }
 
 const hocs = [reduxBoot]
