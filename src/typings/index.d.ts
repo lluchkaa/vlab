@@ -18,7 +18,9 @@ type BindedAsyncAction<T extends Function> = (
   ...args: Parameters<T>
 ) => ReturnType<ReturnType<T>>
 
-type BindedAsyncActions<Obj> = {
+type BindedAsyncActions<
+  Obj extends import('redux').ActionCreatorsMapObject<unknown>
+> = {
   [key in keyof Obj]: (
     ...args: Parameters<PropType<Obj, key>>
   ) => ReturnType<ReturnType<PropType<Obj, key>>>
