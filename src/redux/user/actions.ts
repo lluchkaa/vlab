@@ -2,6 +2,7 @@ import action from '@redux/action'
 import ActionType from './types'
 
 import { modelToUser } from '@services/user'
+import usersActions from '@redux/users/actions'
 
 const loading = (isLoading = true): AppThunk => (dispatch) =>
   dispatch(action(ActionType.LOADING, isLoading))
@@ -20,7 +21,9 @@ const login = (
 ): AppThunk<User> => async (dispatch, getState) => {
   dispatch(action(ActionType.LOGIN_BEGIN))
 
-  const users = getState().users.users
+  const {
+    users: { users },
+  } = getState()
 
   try {
     const findUser = users.find((user) => user.email === email)
@@ -56,12 +59,30 @@ const logout = (
   }
 }
 
+const signup = (
+  newUser: UserModel,
+  onSuccess?: Callback,
+  onError?: ErrorCallback
+): AppThunk => async (dispatch, getState, extra) => {
+  dispatch(action(ActionType.SIGNUP_BEGIN))
+
+  try {
+    await usersActions.append(newUser)(dispatch, getState, extra)
+    onSuccess?.()
+    dispatch(action(ActionType.SIGNUP_SUCCESS, modelToUser(newUser)))
+  } catch (error) {
+    dispatch(action(ActionType.SIGNUP_ERROR, error))
+    onError?.(error)
+  }
+}
+
 const userActions = {
   loading,
   error,
   reset,
   login,
   logout,
+  signup,
 }
 
 export default userActions

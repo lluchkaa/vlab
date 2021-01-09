@@ -27,11 +27,33 @@ const load = (
   }
 }
 
+const append = (
+  newUser: UserModel,
+  onSuccess?: (user: UserModel) => void,
+  onError?: ErrorCallback
+): AppThunk => async (dispatch, getState) => {
+  dispatch(action(ActionType.APPEND_BEGIN))
+  try {
+    const {
+      users: { users },
+    } = getState()
+    if (users.find((user) => user.email === newUser.email)) {
+      throw Error('Email already exists')
+    }
+    dispatch(action(ActionType.APPEND_SUCCESS, users))
+    onSuccess?.(newUser)
+  } catch (error) {
+    dispatch(action(ActionType.APPEND_ERROR, error))
+    onError?.(error)
+  }
+}
+
 const usersActions = {
   loading,
   error,
   reset,
   load,
+  append,
 }
 
 export default usersActions

@@ -26,7 +26,8 @@ const reducer = (state = initialState, action: Action): State => {
       }
     }
     case ActionType.LOGIN_BEGIN:
-    case ActionType.LOGOUT_BEGIN: {
+    case ActionType.LOGOUT_BEGIN:
+    case ActionType.SIGNUP_BEGIN: {
       return {
         ...state,
         isLoading: true,
@@ -46,9 +47,17 @@ const reducer = (state = initialState, action: Action): State => {
         isLoading: false,
       }
     }
+    case ActionType.SIGNUP_SUCCESS: {
+      return {
+        ...state,
+        user: action.payload,
+        isLoading: false,
+      }
+    }
     case ActionType.ERROR:
     case ActionType.LOGIN_ERROR:
-    case ActionType.LOGOUT_ERROR: {
+    case ActionType.LOGOUT_ERROR:
+    case ActionType.SIGNUP_ERROR: {
       return {
         ...state,
         error: action.payload,

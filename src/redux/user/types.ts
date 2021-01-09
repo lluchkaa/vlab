@@ -10,6 +10,10 @@ enum ActionType {
   LOGOUT_BEGIN = '[user]: logout begin',
   LOGOUT_SUCCESS = '[user]: logout success',
   LOGOUT_ERROR = '[user]: logout error',
+
+  SIGNUP_BEGIN = '[user]: signup begin',
+  SIGNUP_SUCCESS = '[user]: signup success',
+  SIGNUP_ERROR = '[user]: signup error',
 }
 
 type LoadingAction = ReduxAction<ActionType.LOADING, boolean>
@@ -30,6 +34,12 @@ type LogoutSuccessAction = ReduxAction<ActionType.LOGOUT_SUCCESS>
 
 type LogoutErrorAction = ReduxAction<ActionType.LOGOUT_ERROR, ErrorType>
 
+type SignupBeginAction = ReduxAction<ActionType.SIGNUP_BEGIN>
+
+type SignupSuccessAction = ReduxAction<ActionType.SIGNUP_SUCCESS, User>
+
+type SignupErrorAction = ReduxAction<ActionType.SIGNUP_ERROR, ErrorType>
+
 export type Action =
   | LoadingAction
   | ErrorAction
@@ -40,5 +50,8 @@ export type Action =
   | LogoutBeginAction
   | LogoutSuccessAction
   | LogoutErrorAction
+  | SignupBeginAction
+  | SignupSuccessAction
+  | SignupErrorAction
 
 export default ActionType

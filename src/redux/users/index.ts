@@ -25,10 +25,17 @@ const reducer = (state = initialState, action: Action): State => {
         ...initialState,
       }
     }
-    case ActionType.LOADING_BEGIN: {
+    case ActionType.LOADING_BEGIN:
+    case ActionType.APPEND_BEGIN: {
       return {
         ...state,
         isLoading: true,
+      }
+    }
+    case ActionType.APPEND_SUCCESS: {
+      return {
+        ...state,
+        users: [...state.users, action.payload],
       }
     }
     case ActionType.LOADING_SUCCESS: {
@@ -39,7 +46,8 @@ const reducer = (state = initialState, action: Action): State => {
       }
     }
     case ActionType.ERROR:
-    case ActionType.LOADING_ERROR: {
+    case ActionType.LOADING_ERROR:
+    case ActionType.APPEND_ERROR: {
       return {
         ...state,
         error: action.payload,
