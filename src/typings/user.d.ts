@@ -1,7 +1,10 @@
+type UserType = import('./enums/User').UserType
+
 interface User {
-  avatar: string
-  email: string
-  firstName: string
   id: ID
+  firstName: string
   lastName: string
+  email: string
+  avatar: string
+  type: UserType
 }
