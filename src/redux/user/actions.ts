@@ -3,6 +3,7 @@ import ActionType from './types'
 
 import { modelToUser } from '@services/user'
 import usersActions from '@redux/users/actions'
+import delay from '@services/delay'
 
 const loading = (isLoading = true): AppThunk => (dispatch) =>
   dispatch(action(ActionType.LOADING, isLoading))
@@ -26,6 +27,7 @@ const login = (
   } = getState()
 
   try {
+    await delay(1000)
     const findUser = users.find((user) => user.email === email)
 
     if (!findUser) {
@@ -65,6 +67,7 @@ const signup = (
   onError?: ErrorCallback
 ): AppThunk => async (dispatch, getState, extra) => {
   dispatch(action(ActionType.SIGNUP_BEGIN))
+  await delay(1000)
 
   try {
     const newUserModel = await usersActions.append(newUser)(

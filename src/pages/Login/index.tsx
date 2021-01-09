@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react'
+import { useSelector } from 'react-redux'
 import { RouteComponentProps } from 'react-router-dom'
 
 import useBindedAction from '@hooks/useBindedAction'
@@ -11,6 +12,9 @@ type Props = RouteComponentProps
 
 const Login: React.FC<Props> = () => {
   const login = useBindedAction(userActions.login)
+  const isLoading = useSelector<ReduxState, boolean>(
+    (state) => state.user.isLoading
+  )
 
   const onSubmit = useCallback(
     ({ email, password }: Values) => {
@@ -19,7 +23,7 @@ const Login: React.FC<Props> = () => {
     [login]
   )
 
-  return <View onSubmit={onSubmit} />
+  return <View onSubmit={onSubmit} isLoading={isLoading} />
 }
 
 export default Login

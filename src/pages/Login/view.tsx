@@ -7,10 +7,11 @@ import Form from './form'
 
 interface Props {
   onSubmit: (values: Values) => void
+  isLoading?: boolean
 }
 
-const View: React.FC<Props> = ({ onSubmit }) => (
-  <Layout>
+const View: React.FC<Props> = ({ onSubmit, isLoading }) => (
+  <Layout showLoader={isLoading}>
     <Form onSubmit={onSubmit} />
   </Layout>
 )
