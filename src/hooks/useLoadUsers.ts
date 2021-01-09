@@ -13,8 +13,8 @@ const useLoadUsers = (): boolean => {
     if (ready) {
       setReady(false)
     }
-    const setIsEeady = () => setReady(true)
-    loadUsers(setIsEeady, setIsEeady)
+    const setIsReady = () => setReady(true)
+    loadUsers(false, setIsReady, setIsReady)
   }, [loadUsers])
 
   return ready

@@ -1,3 +1,4 @@
+import { objectsAreEqual, uniqueFilter } from '@services/utils'
 import ActionType, { Action } from './types'
 
 export interface State {
@@ -39,9 +40,17 @@ const reducer = (state = initialState, action: Action): State => {
       }
     }
     case ActionType.LOADING_SUCCESS: {
+      let newUsers: UserModel[] = []
+      if (action.payload.refresh) {
+        newUsers = action.payload.users
+      } else {
+        newUsers = [...state.users, ...action.payload.users].filter(
+          uniqueFilter(objectsAreEqual)
+        )
+      }
       return {
         ...state,
-        users: action.payload,
+        users: newUsers,
         isLoading: false,
       }
     }

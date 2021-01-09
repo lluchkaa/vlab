@@ -1,5 +1,7 @@
-export const uniqueFilter = <T>(value: T, index: number, self: T[]) =>
-  self.indexOf(value) === index
+export const uniqueFilter = <T>(
+  compare: (a: T, b: T) => boolean = (a, b) => a === b
+) => (value: T, index: number, self: T[]) =>
+  self.findIndex((item) => compare(item, value)) === index
 
 export const noop = (value: unknown) => value
 

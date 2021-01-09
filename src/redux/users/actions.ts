@@ -12,6 +12,7 @@ const error = (error: ErrorType): AppThunk => (dispatch) =>
 const reset = (): AppThunk => (dispatch) => dispatch(action(ActionType.RESET))
 
 const load = (
+  refresh: boolean = false,
   onSuccess?: Callback,
   onError?: ErrorCallback
 ): AppThunk<UserModel[]> => async (dispatch, getState) => {
@@ -19,7 +20,7 @@ const load = (
   try {
     const users: UserModel[] = usersJson as UserModel[]
 
-    dispatch(action(ActionType.LOADING_SUCCESS, users))
+    dispatch(action(ActionType.LOADING_SUCCESS, { users, refresh }))
     onSuccess?.()
     return getState().users.users
   } catch (error) {

@@ -20,7 +20,10 @@ type ResetAction = ReduxAction<ActionType.RESET>
 
 type LoadingBeginAction = ReduxAction<ActionType.LOADING_BEGIN>
 
-type LoadingSuccessAction = ReduxAction<ActionType.LOADING_SUCCESS, UserModel[]>
+type LoadingSuccessAction = ReduxAction<
+  ActionType.LOADING_SUCCESS,
+  { users: UserModel[]; refresh: boolean }
+>
 
 type LoadingErrorAction = ReduxAction<ActionType.LOADING_ERROR, ErrorType>
 
