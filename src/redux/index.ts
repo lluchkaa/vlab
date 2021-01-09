@@ -5,8 +5,9 @@ import ActionType from './types'
 import { isPrimitive } from '@services/utils'
 
 import user from './user'
+import users from './users'
 
-const rootReducer = combineReducers({ user })
+const rootReducer = combineReducers({ user, users })
 
 const reducer = (state: ReduxState | undefined, action: AnyAction) => {
   switch (action.type) {

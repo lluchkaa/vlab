@@ -10,11 +10,14 @@ type GlobalAction = import('@redux/types').Action
 type UserActionType = import('@redux/user/types').default
 type UserAction = import('@redux/user/types').Action
 
+type UsersActionType = import('@redux/users/types').default
+type UsersAction = import('@redux/users/types').Action
+
 //* reducers end
 
-type AnyActionType = GlobalActionType | UserActionType
+type AnyActionType = GlobalActionType | UserActionType | UsersActionType
 
-type AnyAction = GlobalAction | UserAction
+type AnyAction = GlobalAction | UserAction | UsersAction
 
 interface ReduxActionWithPayload<T = AnyActionType, P = undefined>
   extends CoreReduxAction<T> {
