@@ -6,7 +6,7 @@ enum ActionType {
 type ResetAction = ReduxAction<ActionType.RESET>
 type UpdateAction = ReduxAction<
   ActionType.UPDATE,
-  { path: string[]; value: unknown }
+  { path: string | string[]; value: unknown }
 >
 
 export type Action = ResetAction | UpdateAction

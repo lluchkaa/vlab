@@ -16,16 +16,21 @@ const reducer = (state: ReduxState | undefined, action: AnyAction) => {
     }
     case ActionType.UPDATE: {
       if (action.payload.path.length > 0) {
+        const path = Array.isArray(action.payload.path)
+          ? action.payload.path.join('.')
+          : action.payload.path
+        const paths = path.split('.')
+
         let target: Record<string, unknown> = state as Record<string, unknown>
-        const path = action.payload.path.join('.').split('.')
-        for (const key of path.slice(0, -1)) {
+        console.log(paths.slice(0, -1))
+        for (const key of paths.slice(0, -1)) {
           if (!target[key] || isPrimitive(target[key])) {
             target[key] = {}
           } else {
             target = target[key] as Record<string, unknown>
           }
         }
-        target[path[path.length - 1]] = action.payload.value
+        target[paths[paths.length - 1]] = action.payload.value
       }
     }
   }

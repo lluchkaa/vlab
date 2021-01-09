@@ -7,7 +7,7 @@ export const configureReduxConsole = () => {
   if (!isProduction) {
     const reset = () => globalActions.reset()(dispatch, getState, undefined)
 
-    const update = (path: string[], value: unknown) =>
+    const update = (path: string | string[], value: unknown) =>
       globalActions.update(path, value)(dispatch, getState, undefined)
 
     window.resetRedux = reset
