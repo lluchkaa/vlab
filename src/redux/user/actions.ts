@@ -1,7 +1,7 @@
 import action from '@redux/action'
 import ActionType from './types'
 
-import { UserType } from '@typings/enums/User'
+import { modelToUser } from '@services/user'
 
 const loading = (isLoading = true): AppThunk => (dispatch) =>
   dispatch(action(ActionType.LOADING, isLoading))
@@ -17,19 +17,20 @@ const login = (
   _remember: boolean = false,
   onSuccess?: (user: User) => void,
   onError?: ErrorCallback
-): AppThunk<User> => async (dispatch) => {
+): AppThunk<User> => async (dispatch, getState) => {
   dispatch(action(ActionType.LOGIN_BEGIN))
 
+  const users = getState().users.users
+
   try {
-    // todo: replace with user
-    const user: User = {
-      id: 0,
-      firstName: 'Admin',
-      lastName: '',
-      email: email,
-      avatar: '',
-      type: UserType.student,
+    const findUser = users.find((user) => user.email === email)
+
+    if (!findUser) {
+      throw Error(`There are no user with email ${email}`)
+    } else if (findUser.password !== password) {
+      throw Error('Wrong credentials')
     }
+    const user = modelToUser(findUser)
 
     onSuccess?.(user)
     dispatch(action(ActionType.LOGIN_SUCCESS, user))
