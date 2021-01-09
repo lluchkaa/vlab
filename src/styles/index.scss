@@ -5,9 +5,9 @@
 
 html,
 body,
+#root,
 .page {
   min-height: 100vh;
-  width: 100vw;
   max-width: 100vw;
   font-size: $fontSize;
   overflow-x: hidden;
@@ -19,6 +19,33 @@ body,
 
 html {
   overflow-y: scroll;
+}
+
+html,
+body {
+  width: 100vw;
+}
+
+#root,
+.page {
+  width: 100%;
+}
+
+.page {
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  .page-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: stretch;
+
+    flex-grow: 1;
+
+    @extend %fullwidth;
+  }
 }
 
 #modal-root {
@@ -76,22 +103,6 @@ button {
 
 .center-container {
   @extend %center-container;
-}
-
-.page {
-  flex-direction: column;
-  align-items: center;
-
-  .page-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-self: stretch;
-
-    flex-grow: 1;
-
-    @extend %fullwidth;
-  }
 }
 
 .fullwidth {
