@@ -1,36 +1,33 @@
-import React from 'react'
-import { ConnectedProps, connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import React, { useMemo } from 'react'
+import { useSelector } from 'react-redux'
+
 import { LinkProps } from 'react-router-dom'
+
+import userActions from '@redux/user/actions'
+import useBindedAction from '@hooks/useBindedAction'
 
 import AuthedHeader from './Authed'
 import NonAuthedHeader from './NonAuthed'
-import userActions from '@redux/user/actions'
 
-const mapStateToProps = (state: ReduxState) => ({
-  user: state.user.user,
-})
-
-const mapDispatchToProps = (dispatch: ReduxDispatch) => ({
-  userActions: bindActionCreators<
-    typeof userActions,
-    BindedAsyncActions<typeof userActions>
-  >(userActions, dispatch),
-})
-
-const connector = connect(mapStateToProps, mapDispatchToProps)
-
-interface NativeProps {
+interface Props {
   links?: LinkProps[]
 }
 
-type Props = NativeProps & ConnectedProps<typeof connector>
+const Header: React.FC<Props> = ({ links }) => {
+  const logout = useBindedAction(userActions.logout)
+  const user = useSelector<ReduxState, User | null>((state) => state.user.user)
 
-const Header: React.FC<Props> = ({ links, user, userActions: { logout } }) =>
-  user ? (
-    <AuthedHeader links={links} user={user} logout={logout} />
-  ) : (
-    <NonAuthedHeader />
+  const headerNode = useMemo(
+    () =>
+      user ? (
+        <AuthedHeader links={links} user={user} logout={logout} />
+      ) : (
+        <NonAuthedHeader />
+      ),
+    [user, logout]
   )
 
-export default connector(Header) as React.FC<NativeProps>
+  return headerNode
+}
+
+export default Header
