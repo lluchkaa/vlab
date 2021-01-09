@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { compose } from 'redux'
 
 import reduxBoot from '@boot/redux'
@@ -10,7 +10,8 @@ import {
   configureScrollbarPadding,
 } from '@services/configure'
 import useConstructor from '@hooks/useConstructor'
-import useLoadUsers from '@hooks/useLoadUsers'
+import useBindedAction from '@hooks/useBindedAction'
+import usersActions from '@redux/users/actions'
 
 type Props = {}
 
@@ -24,7 +25,10 @@ const App: React.FC<Props> = () => {
     }
   })
 
-  useLoadUsers()
+  const loadUsers = useBindedAction(usersActions.load)
+  useEffect(() => {
+    loadUsers()
+  }, [])
 
   return <Routes />
 }
