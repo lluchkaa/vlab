@@ -9,28 +9,21 @@ import {
   configureReduxConsole,
   configureScrollbarPadding,
 } from '@services/configure'
+import useConstructor from '@hooks/useConstructor'
 
 type Props = {}
 
-class App extends React.Component<Props> {
-  private cleanup: (() => void) | undefined = undefined
-  constructor(props: Props) {
-    super(props)
+const App: React.FC<Props> = () => {
+  useConstructor(() => {
     const cleanupConsole = configureReduxConsole()
     configureScrollbarPadding()
 
-    this.cleanup = () => {
+    return () => {
       cleanupConsole?.()
     }
-  }
+  })
 
-  componentWillUnmount() {
-    this.cleanup?.()
-  }
-
-  render() {
-    return <Routes />
-  }
+  return <Routes />
 }
 
 const hocs = [reduxBoot]
