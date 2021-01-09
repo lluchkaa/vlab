@@ -1,6 +1,8 @@
 import action from '@redux/action'
 import ActionType from './types'
 
+import { UserType } from '@typings/enums/User'
+
 const loading = (isLoading = true): AppThunk => (dispatch) =>
   dispatch(action(ActionType.LOADING, isLoading))
 
@@ -21,11 +23,12 @@ const login = (
   try {
     // todo: replace with user
     const user: User = {
-      avatar: '',
-      email: email,
-      firstName: 'Admin',
       id: 0,
+      firstName: 'Admin',
       lastName: '',
+      email: email,
+      avatar: '',
+      type: UserType.student,
     }
 
     onSuccess?.(user)

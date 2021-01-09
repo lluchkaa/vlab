@@ -3,4 +3,9 @@ enum UserType {
   admin = 'admin',
 }
 
-export { UserType }
+const UserTypeLabel = {
+  [UserType.admin]: 'Admin',
+  [UserType.student]: 'Student',
+}
+
+export { UserType, UserTypeLabel }
