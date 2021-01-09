@@ -4,7 +4,10 @@
   width: 100%;
   align-self: stretch;
 
-  @extend %row;
+  display: grid;
+  column-gap: rem(20);
+  grid-template-columns: auto auto auto;
+
   justify-content: space-between;
 
   padding: rem(11) 0 rem(9);
@@ -14,7 +17,6 @@
 
   .left {
     @extend %row;
-
     .drawer {
       display: none;
       margin-right: rem(16);
@@ -87,7 +89,7 @@
           width: rem(42);
           height: rem(42);
 
-          border: rem(4) solid $loafer;
+          border: rem(4) solid $white;
           border-radius: rem(21);
 
           box-shadow: 0 rem(2) rem(4) rgba($calatinaBlue, 0.11);
