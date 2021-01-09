@@ -18,7 +18,40 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "paths": {
+      "@App": ["./src/App"],
+      "@assets": ["./src/assets"],
+      "@boot": ["./src/boot"],
+      "@common": ["./src/common"],
+      "@config": ["./src/config"],
+      "@constants": ["./src/constants"],
+      "@components": ["./src/components"],
+      "@hocs": ["./src/hocs"],
+      "@hooks": ["./src/hooks"],
+      "@pages": ["./src/pages"],
+      "@redux": ["./src/redux"],
+      "@routes": ["./src/routes"],
+      "@services": ["./src/services"],
+      "@styles": ["./src/styles"],
+      "@typings": ["./src/typings"],
+
+      "@App/*": ["./src/App/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@boot/*": ["./src/boot/*"],
+      "@common/*": ["./src/common/*"],
+      "@config/*": ["./src/config/*"],
+      "@constants/*": ["./src/constants/*"],
+      "@components/*": ["./src/components/*"],
+      "@hocs/*": ["./src/hocs/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@redux/*": ["./src/redux/*"],
+      "@routes/*": ["./src/routes/*"],
+      "@services/*": ["./src/services/*"],
+      "@styles/*": ["./src/styles/*"],
+      "@typings/*": ["./src/typings/*"]
+    }
   },
   "include": [
     "src"
