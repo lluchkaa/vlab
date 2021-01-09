@@ -10,6 +10,7 @@ import {
   configureScrollbarPadding,
 } from '@services/configure'
 import useConstructor from '@hooks/useConstructor'
+import useLoadUsers from '@hooks/useLoadUsers'
 
 type Props = {}
 
@@ -22,6 +23,8 @@ const App: React.FC<Props> = () => {
       cleanupConsole?.()
     }
   })
+
+  useLoadUsers()
 
   return <Routes />
 }
