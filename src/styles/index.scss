@@ -29,6 +29,8 @@ html {
   height: 0;
 }
 
+@import 'image';
+
 @include media-lg {
   html,
   body {
