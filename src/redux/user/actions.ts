@@ -5,6 +5,9 @@ import { modelToUser } from '@services/user'
 import usersActions from '@redux/users/actions'
 import delay from '@services/delay'
 
+import SnackbarService from '@services/snackbar'
+import { getErrorMessage } from '@services/error'
+
 const loading = (isLoading = true): AppThunk => (dispatch) =>
   dispatch(action(ActionType.LOADING, isLoading))
 
@@ -43,6 +46,7 @@ const login = (
   } catch (error) {
     dispatch(action(ActionType.LOGIN_ERROR, error))
     onError?.(error)
+    SnackbarService.error(getErrorMessage(error))
   }
 }
 
@@ -58,6 +62,7 @@ const logout = (
   } catch (error) {
     dispatch(action(ActionType.LOGOUT_ERROR, error))
     onError?.(error)
+    SnackbarService.error(getErrorMessage(error))
   }
 }
 
@@ -83,6 +88,7 @@ const signup = (
   } catch (error) {
     dispatch(action(ActionType.SIGNUP_ERROR, error))
     onError?.(error)
+    SnackbarService.error(getErrorMessage(error))
   }
 }
 
