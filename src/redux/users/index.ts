@@ -1,5 +1,5 @@
-import { objectsAreEqual, uniqueFilter } from '@services/utils'
 import ActionType, { Action } from './types'
+import { objectsAreEqual, uniqueFilter } from '@services/utils'
 
 export interface State {
   isLoading: boolean
@@ -37,6 +37,7 @@ const reducer = (state = initialState, action: Action): State => {
       return {
         ...state,
         users: [...state.users, action.payload],
+        isLoading: false,
       }
     }
     case ActionType.LOAD_SUCCESS: {
