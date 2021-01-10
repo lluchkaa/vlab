@@ -11,7 +11,10 @@ type Props = MaterialButtonProps
 
 const Button: React.FC<Props> = (props) => {
   return (
-    <MaterialButton {...props} className={clsx(styles['material-button'])} />
+    <MaterialButton
+      {...props}
+      className={clsx(styles['material-button'], props.className)}
+    />
   )
 }
 

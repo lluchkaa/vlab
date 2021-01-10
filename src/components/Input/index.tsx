@@ -1,5 +1,4 @@
 import React from 'react'
-import clsx from 'clsx'
 import {
   TextField as MaterialInput,
   TextFieldProps as MaterialInputProps,
@@ -33,12 +32,7 @@ const StyledMaterialInput = withStyles({
 })(MaterialInput)
 
 const Input: React.FC<Props> = (props) => {
-  return (
-    <StyledMaterialInput
-      {...props}
-      className={clsx(styles['material-input'])}
-    />
-  )
+  return <StyledMaterialInput {...props} className={styles['material-input']} />
 }
 
 export default Input

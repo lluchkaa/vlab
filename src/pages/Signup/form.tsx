@@ -1,6 +1,5 @@
 import React from 'react'
 import { useFormik } from 'formik'
-import clsx from 'clsx'
 
 import Input from '@components/Input'
 import Button from '@components/Button'
@@ -33,7 +32,7 @@ const Form: React.FC<Props> = ({ onSubmit }) => {
   })
 
   return (
-    <form onSubmit={handleSubmit} className={clsx(styles['default-form'])}>
+    <form onSubmit={handleSubmit} className={styles['default-form']}>
       <Input
         name="firstName"
         value={firstName}
