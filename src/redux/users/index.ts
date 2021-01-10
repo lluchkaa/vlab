@@ -26,7 +26,7 @@ const reducer = (state = initialState, action: Action): State => {
         ...initialState,
       }
     }
-    case ActionType.LOADING_BEGIN:
+    case ActionType.LOAD_BEGIN:
     case ActionType.APPEND_BEGIN: {
       return {
         ...state,
@@ -39,7 +39,7 @@ const reducer = (state = initialState, action: Action): State => {
         users: [...state.users, action.payload],
       }
     }
-    case ActionType.LOADING_SUCCESS: {
+    case ActionType.LOAD_SUCCESS: {
       let newUsers: UserModel[] = []
       if (action.payload.refresh) {
         newUsers = action.payload.users
@@ -55,7 +55,7 @@ const reducer = (state = initialState, action: Action): State => {
       }
     }
     case ActionType.ERROR:
-    case ActionType.LOADING_ERROR:
+    case ActionType.LOAD_ERROR:
     case ActionType.APPEND_ERROR: {
       return {
         ...state,

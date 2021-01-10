@@ -3,9 +3,9 @@ enum ActionType {
   ERROR = '[users]: error',
   RESET = '[users]: reset',
 
-  LOADING_BEGIN = '[users]: loading begin',
-  LOADING_SUCCESS = '[users]: loading success',
-  LOADING_ERROR = '[users]: loading error',
+  LOAD_BEGIN = '[users]: load begin',
+  LOAD_SUCCESS = '[users]: load success',
+  LOAD_ERROR = '[users]: load error',
 
   APPEND_BEGIN = '[users]: append begin',
   APPEND_SUCCESS = '[users]: append success',
@@ -18,14 +18,14 @@ type ErrorAction = ReduxAction<ActionType.ERROR, ErrorType>
 
 type ResetAction = ReduxAction<ActionType.RESET>
 
-type LoadingBeginAction = ReduxAction<ActionType.LOADING_BEGIN>
+type LoadBeginAction = ReduxAction<ActionType.LOAD_BEGIN>
 
-type LoadingSuccessAction = ReduxAction<
-  ActionType.LOADING_SUCCESS,
+type LoadSuccessAction = ReduxAction<
+  ActionType.LOAD_SUCCESS,
   { users: UserModel[]; refresh: boolean }
 >
 
-type LoadingErrorAction = ReduxAction<ActionType.LOADING_ERROR, ErrorType>
+type LoadErrorAction = ReduxAction<ActionType.LOAD_ERROR, ErrorType>
 
 type AppendBeginAction = ReduxAction<ActionType.APPEND_BEGIN>
 
@@ -37,9 +37,9 @@ export type Action =
   | LoadingAction
   | ErrorAction
   | ResetAction
-  | LoadingBeginAction
-  | LoadingSuccessAction
-  | LoadingErrorAction
+  | LoadBeginAction
+  | LoadSuccessAction
+  | LoadErrorAction
   | AppendBeginAction
   | AppendSuccessAction
   | AppendErrorAction
