@@ -1,0 +1,42 @@
+@import '../../../../styles/index.scss';
+
+.task-card-wrapper {
+  border: 1px solid rgba(5, 56, 107, 0.7);
+  width: 270px;
+  height: 348px;
+  padding: 30px;
+  margin: 0 30px 30px;
+  border-radius: 5px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow: auto;
+  box-shadow: 0px 4px 11px rgba(0, 0, 0, 0.06);
+
+  .task-card-title {
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+
+  .task-card-title-margin {
+    margin-top: auto;
+  }
+
+  .task-card-desc {
+    font-size: 14px;
+    margin-bottom: 15px;
+    color: rgba(133, 141, 147, 0.9);
+  }
+
+  .task-card-btn-link {
+    margin-top: auto;
+    padding: 6px 15px;
+    border: 1px solid rgba(5, 56, 107, 0.7);
+    border-radius: 4px;
+    font-size: rem(14px);
+    text-transform: uppercase;
+  }
+}
