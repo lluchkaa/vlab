@@ -2,6 +2,7 @@ import React from 'react'
 import { useFormik } from 'formik'
 
 import Input from '@components/Input'
+import Button from '@components/Button'
 
 import { UserType } from '@typings/enums/User'
 
@@ -32,14 +33,14 @@ const Form: React.FC<Props> = ({ onSubmit }) => {
     <form onSubmit={handleSubmit}>
       <Input name="firstName" value={firstName} onChange={handleChange} />
       <Input name="lastName" value={lastName} onChange={handleChange} />
-      <Input name="email" value={email} onChange={handleChange} />
+      <Input name="email" value={email} onChange={handleChange} type="email" />
       <Input
         name="password"
         value={password}
         onChange={handleChange}
         type="password"
       />
-      <button type="submit">signup</button>
+      <Button type="submit">{'Signup'}</Button>
     </form>
   )
 }

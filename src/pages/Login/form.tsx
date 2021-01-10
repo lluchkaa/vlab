@@ -2,6 +2,7 @@ import React from 'react'
 import { useFormik } from 'formik'
 
 import Input from '@components/Input'
+import Button from '@components/Button'
 
 import Values from './values'
 
@@ -24,14 +25,14 @@ const Form: React.FC<Props> = ({ onSubmit }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Input name="email" value={email} onChange={handleChange} />
+      <Input name="email" value={email} onChange={handleChange} type="email" />
       <Input
         name="password"
         value={password}
         onChange={handleChange}
         type="password"
       />
-      <button type="submit">aaa</button>
+      <Button type="submit">{'Login'}</Button>
     </form>
   )
 }
