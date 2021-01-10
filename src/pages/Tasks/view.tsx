@@ -8,18 +8,25 @@ import { UserType } from '@typings/enums/User'
 interface Props {
   isLoading?: boolean
   tasks: Task[]
+  taskResults: TaskResult[]
   user: User | null
 }
 
-const View: React.FC<Props> = ({ isLoading, tasks, user }) => {
-  const canRedirect = useMemo(() => user?.type === UserType.student, [user])
+const View: React.FC<Props> = ({ isLoading, tasks, taskResults, user }) => {
+  const isStudent = useMemo(() => user?.type === UserType.student, [user])
 
   const tasksNode = useMemo(
     () =>
-      tasks.map((task) => (
-        <TaskCard key={task.id} task={task} canRedirect={canRedirect} />
-      )),
-    [tasks, canRedirect]
+      tasks.map((task) => {
+        const canRedirect =
+          isStudent &&
+          !taskResults.find(
+            (taskResult) =>
+              taskResult.userId === user?.id && taskResult.taskId === task.id
+          )
+        return <TaskCard key={task.id} task={task} canRedirect={canRedirect} />
+      }),
+    [tasks, isStudent]
   )
 
   return <Layout showLoader={isLoading}>{tasksNode}</Layout>

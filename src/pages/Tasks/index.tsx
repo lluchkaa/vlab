@@ -21,13 +21,23 @@ const Tasks: React.FC<Props> = () => {
   const user = useSelector<ReduxState, User | null>((state) => state.user.user)
 
   const tasks = useSelector<ReduxState, Task[]>((state) => state.tasks.tasks)
+  const taskResults = useSelector<ReduxState, TaskResult[]>(
+    (state) => state.tasks.results
+  )
 
   useEffect(() => {
     loadTasks()
     loadTaskResults()
   }, [])
 
-  return <View isLoading={isLoading} tasks={tasks} user={user} />
+  return (
+    <View
+      isLoading={isLoading}
+      tasks={tasks}
+      user={user}
+      taskResults={taskResults}
+    />
+  )
 }
 
 export default Tasks
