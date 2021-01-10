@@ -1,0 +1,16 @@
+[
+  {
+    "id": 0,
+    "title": "Some Title",
+    "description": "Some Description",
+    "blocks": null,
+    "etalon": null
+  },
+  {
+    "id": 1,
+    "title": "Some Title 1",
+    "description": "Some Description 1",
+    "blocks": null,
+    "etalon": null
+  }
+]
