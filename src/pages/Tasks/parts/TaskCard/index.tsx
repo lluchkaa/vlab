@@ -1,4 +1,5 @@
 import React from 'react'
+import clsx from 'clsx'
 
 import styles from './styles.module.scss'
 
@@ -13,7 +14,14 @@ const TaskCard: React.FC<Props> = ({ task, canRedirect = false }) => {
 
   return (
     <div className={styles['task-card-wrapper']}>
-      <p className={styles['task-card-title']}>{task.title}</p>
+      <p
+        className={clsx(
+          styles['task-card-title'],
+          canRedirect && styles['task-card-title-margin']
+        )}
+      >
+        {task.title}
+      </p>
       <p className={styles['task-card-desc']}>{task.description}</p>
       {canRedirect && (
         <a href={`tasks/${task.id}`} className={styles['task-card-btn-link']}>
