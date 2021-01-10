@@ -11,6 +11,9 @@ const Routes: React.FC = () => (
       <Route exact={true} path={paths.login} component={pages.Login} />
       <Route exact={true} path={paths.signup} component={pages.Signup} />
 
+      <Route exact={true} path={paths.tasks} component={pages.Tasks} />
+      <Route exact={true} path={paths.task} component={pages.Task} />
+
       <Route exact={true} path={paths.anyPath} component={pages.NotFound} />
     </Switch>
   </Router>
