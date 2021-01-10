@@ -6,8 +6,9 @@ import { isPrimitive } from '@services/utils'
 
 import user from './user'
 import users from './users'
+import tasks from './tasks'
 
-const rootReducer = combineReducers({ user, users })
+const rootReducer = combineReducers({ user, users, tasks })
 
 const reducer = (state: ReduxState | undefined, action: AnyAction) => {
   switch (action.type) {
