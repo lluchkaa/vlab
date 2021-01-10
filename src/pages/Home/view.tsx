@@ -1,9 +1,10 @@
 import React from 'react'
+import { Redirect } from 'react-router-dom'
 
-import Layout from '@common/Layout'
+import links from '@routes/links'
 
 type Props = {}
 
-const View: React.FC<Props> = () => <Layout />
+const View: React.FC<Props> = () => <Redirect to={links.tasks()} />
 
 export default View
