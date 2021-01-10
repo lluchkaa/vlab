@@ -1,7 +1,14 @@
 import React from 'react'
 
-type Props = {}
+import Layout from '@common/Layout'
 
-const View: React.FC<Props> = () => null
+interface Props {
+  isLoading?: boolean
+  tasks: Task[]
+}
+
+const View: React.FC<Props> = ({ isLoading }) => (
+  <Layout showLoader={isLoading} />
+)
 
 export default View
