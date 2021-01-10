@@ -18,6 +18,7 @@ const Tasks: React.FC<Props> = () => {
   const isLoading = useSelector<ReduxState, boolean>(
     (state) => state.tasks.isLoading
   )
+  const user = useSelector<ReduxState, User | null>((state) => state.user.user)
 
   const tasks = useSelector<ReduxState, Task[]>((state) => state.tasks.tasks)
 
@@ -26,7 +27,7 @@ const Tasks: React.FC<Props> = () => {
     loadTaskResults()
   }, [])
 
-  return <View isLoading={isLoading} tasks={tasks} />
+  return <View isLoading={isLoading} tasks={tasks} user={user} />
 }
 
 export default Tasks
