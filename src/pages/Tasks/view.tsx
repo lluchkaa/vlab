@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 
 import Layout from '@common/Layout'
+
+import TaskCard from './parts/TaskCard'
 
 interface Props {
   isLoading?: boolean
@@ -8,8 +10,13 @@ interface Props {
   user: User | null
 }
 
-const View: React.FC<Props> = ({ isLoading }) => (
-  <Layout showLoader={isLoading} />
-)
+const View: React.FC<Props> = ({ isLoading, tasks }) => {
+  const tasksNode = useMemo(
+    () => tasks.map((task) => <TaskCard key={task.id} task={task} />),
+    [tasks]
+  )
+
+  return <Layout showLoader={isLoading}>{tasksNode}</Layout>
+}
 
 export default View
