@@ -1,6 +1,8 @@
 import React from 'react'
 import { useFormik } from 'formik'
 
+import Input from '@components/Input'
+
 import Values from './values'
 
 interface Props {
@@ -22,8 +24,8 @@ const Form: React.FC<Props> = ({ onSubmit }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input name="email" value={email} onChange={handleChange} />
-      <input
+      <Input name="email" value={email} onChange={handleChange} />
+      <Input
         name="password"
         value={password}
         onChange={handleChange}
