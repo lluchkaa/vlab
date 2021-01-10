@@ -36,7 +36,7 @@ const Task: React.FC<Props> = ({ match: { params }, history: { replace } }) => {
   }, [replace])
 
   useEffect(() => {
-    selectTask(id)
+    selectTask(id, undefined, () => replace(links.tasks()))
   }, [id])
 
   return <View isLoading={isLoading} task={task} />
