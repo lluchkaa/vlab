@@ -7,6 +7,7 @@ import links from '@routes/links'
 
 import tasksActions from '@redux/tasks/actions'
 import useBindedActions from '@hooks/useBindedActions'
+import SnackbarService from '@services/snackbar'
 
 import View from './view'
 import DiagramWrapper from './DiagramWrapper'
@@ -47,7 +48,10 @@ const Task: React.FC<Props> = ({ match: { params }, history: { replace } }) => {
 
   const onSubmit = useCallback(() => {
     if (!!task && !!linkNodes.current) {
-      addSolution(linkNodes.current, task.id)
+      addSolution(linkNodes.current, task.id, ({ mark }) => {
+        SnackbarService.success(`Завдання виконано з оцінкою ${mark}`)
+        replace(links.tasks())
+      })
     }
   }, [addSolution])
 
