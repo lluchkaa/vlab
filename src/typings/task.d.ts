@@ -1,10 +1,10 @@
-type TaskSolution = unknown
+type TaskSolution = NodeLink[]
 
 interface Task {
   id: ID
   title: string
   description: string
-  blocks: unknown
+  blocks: NodeBlock[]
   etalon: TaskSolution
 }
 
