@@ -5,8 +5,8 @@ import { produce } from 'immer'
 import Diagram from '@components/Diagram'
 
 interface Props {
-  nodeDataArray: go.ObjectData[]
-  links?: React.Ref<go.ObjectData[]>
+  nodeDataArray: NodeBlock[]
+  links?: React.Ref<NodeLink[]>
 }
 
 interface State {
@@ -45,7 +45,7 @@ class DiagramWrapper extends React.Component<Props, State> {
       state: { linkDataArray },
     } = this
     if (typeof links === 'function') {
-      links(linkDataArray)
+      links(linkDataArray as NodeLink[])
     } else if (links !== null && !!links) {
       ;(links as React.MutableRefObject<
         go.ObjectData[]

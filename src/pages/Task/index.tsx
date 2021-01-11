@@ -1,13 +1,12 @@
-import React, { useEffect, useMemo, useRef } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { RouteComponentProps } from 'react-router-dom'
-import * as go from 'gojs'
 
 import { getId, isId } from '@services/id'
 import links from '@routes/links'
 
 import tasksActions from '@redux/tasks/actions'
-import useBindedAction from '@hooks/useBindedAction'
+import useBindedActions from '@hooks/useBindedActions'
 
 import View from './view'
 import DiagramWrapper from './DiagramWrapper'
@@ -21,7 +20,10 @@ type Props = RouteComponentProps<PageParams>
 const Task: React.FC<Props> = ({ match: { params }, history: { replace } }) => {
   const id = useMemo(() => getId(params.id), [params.id])
 
-  const selectTask = useBindedAction(tasksActions.select)
+  const { select: selectTask, addSolution } = useBindedActions({
+    select: tasksActions.select,
+    addSolution: tasksActions.addSolution,
+  })
 
   const task = useSelector<ReduxState, Task | null>(
     (state) => state.tasks.currentTask
@@ -41,26 +43,24 @@ const Task: React.FC<Props> = ({ match: { params }, history: { replace } }) => {
     selectTask(id, undefined, () => replace(links.tasks()))
   }, [id])
 
-  const linkNodes = useRef<go.ObjectData[]>(null)
+  const linkNodes = useRef<NodeLink[]>(null)
+
+  const onSubmit = useCallback(() => {
+    if (!!task && !!linkNodes.current) {
+      addSolution(linkNodes.current, task.id)
+    }
+  }, [addSolution])
 
   const child = useMemo(
     () =>
       task ? (
-        <DiagramWrapper
-          nodeDataArray={[
-            { key: 0, text: 'Alpha', color: 'lightblue', loc: '0 0' },
-            { key: 1, text: 'Beta', color: 'orange', loc: '150 0' },
-            { key: 2, text: 'Gamma', color: 'lightgreen', loc: '0 150' },
-            { key: 3, text: 'Delta', color: 'pink', loc: '150 150' },
-          ]}
-          links={linkNodes}
-        />
+        <DiagramWrapper nodeDataArray={task.blocks} links={linkNodes} />
       ) : null,
     [task]
   )
 
   return (
-    <View isLoading={isLoading} task={task}>
+    <View isLoading={isLoading} task={task} onSubmit={onSubmit}>
       {child}
     </View>
   )
