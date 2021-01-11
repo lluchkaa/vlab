@@ -5700,6 +5700,18 @@ globule@^1.0.0:
     lodash "~4.17.10"
     minimatch "~3.0.2"
 
+gojs-react@^1.0.10:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/gojs-react/-/gojs-react-1.0.10.tgz#e9936999d6a5003cce56377d2204126deb0b1458"
+  integrity sha512-kHUNMo9U0WoaAGugIysxJRevvWL+D1Y+alhdaW2zkJrs3NG6PMzDHLTlIrUdaUe7816r4Fse8CvaURpShoJGgA==
+  dependencies:
+    tslib "^2.0.3"
+
+gojs@^2.1.33:
+  version "2.1.33"
+  resolved "https://registry.yarnpkg.com/gojs/-/gojs-2.1.33.tgz#04a656f0e1dea49d100fe7d8dfada370e7c8d4fc"
+  integrity sha512-T1tU8LcQV3kgK+/vwWHNeURqPyPHBiBQaU0SS3V2+IdZrNfQFxW7yvY8329WzL/XMU0pYmG4+lMWREbkKlqWXg==
+
 graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.2.0, graceful-fs@^4.2.4:
   version "4.2.4"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.4.tgz#2256bde14d3632958c465ebc96dc467ca07a29fb"
