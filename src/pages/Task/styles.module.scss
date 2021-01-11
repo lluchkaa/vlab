@@ -1,6 +1,6 @@
 @import '../../styles/main';
 
-.page {
+:global(.page).page {
   .page-content {
     align-items: stretch;
     padding-bottom: rem(16);
