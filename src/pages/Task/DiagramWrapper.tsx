@@ -4,6 +4,8 @@ import { produce } from 'immer'
 
 import Diagram from '@components/Diagram'
 
+import styles from './styles.module.scss'
+
 interface Props {
   nodeDataArray: NodeBlock[]
   links?: React.Ref<NodeLink[]>
@@ -206,7 +208,7 @@ class DiagramWrapper extends React.Component<Props, State> {
         skipsDiagramUpdate={this.state.skipsDiagramUpdate}
         onDiagramEvent={this.handleDiagramEvent}
         onModelChange={this.handleModelChange}
-        className="diagram"
+        className={styles['diagram']}
       />
     )
   }
