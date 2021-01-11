@@ -1,5 +1,6 @@
 import ActionType, { Action } from './types'
-import { objectsAreEqual, uniqueFilter } from '@services/utils'
+import { uniqueFilter } from '@services/utils'
+import { equalTaskResults, equalTasks } from '@services/task'
 
 export interface State {
   isLoading: boolean
@@ -52,7 +53,7 @@ const reducer = (state = initialState, action: Action): State => {
         newTasks = action.payload.tasks
       } else {
         newTasks = [...state.tasks, ...action.payload.tasks].filter(
-          uniqueFilter(objectsAreEqual)
+          uniqueFilter(equalTasks)
         )
       }
       return {
@@ -81,7 +82,7 @@ const reducer = (state = initialState, action: Action): State => {
         newResults = action.payload.results
       } else {
         newResults = [...state.results, ...action.payload.results].filter(
-          uniqueFilter(objectsAreEqual)
+          uniqueFilter(equalTaskResults)
         )
       }
       return {
@@ -91,6 +92,7 @@ const reducer = (state = initialState, action: Action): State => {
       }
     }
     case ActionType.APPEND_RESULT_SUCCESS: {
+      console.log('action.payload', action.payload)
       return {
         ...state,
         results: [...state.results, action.payload],

@@ -23,3 +23,6 @@ export const getMark = (
 
   return mark
 }
+
+export const equalTasks = (a: Task, b: Task) => a.id === b.id
+export const equalTaskResults = (a: TaskResult, b: TaskResult) => a.id === b.id

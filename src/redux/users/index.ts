@@ -1,5 +1,6 @@
 import ActionType, { Action } from './types'
-import { objectsAreEqual, uniqueFilter } from '@services/utils'
+import { uniqueFilter } from '@services/utils'
+import { equalUserModels } from '@services/user'
 
 export interface State {
   isLoading: boolean
@@ -46,7 +47,7 @@ const reducer = (state = initialState, action: Action): State => {
         newUsers = action.payload.users
       } else {
         newUsers = [...state.users, ...action.payload.users].filter(
-          uniqueFilter(objectsAreEqual)
+          uniqueFilter(equalUserModels)
         )
       }
       return {

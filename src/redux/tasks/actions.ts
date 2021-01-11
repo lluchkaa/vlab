@@ -116,6 +116,7 @@ const addSolution = (
   onError?: ErrorCallback
 ): AppThunk<TaskResult> => async (dispatch, getState) => {
   dispatch(action(ActionType.APPEND_RESULT_BEGIN))
+
   try {
     const {
       tasks: { results, tasks },
