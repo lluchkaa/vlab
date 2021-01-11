@@ -38,29 +38,31 @@ const Task: React.FC<Props> = ({ match: { params }, history: { replace } }) => {
     if (!isId(id)) {
       replace(links.home())
     }
-  }, [replace])
+  }, [replace, id])
 
   useEffect(() => {
     selectTask(id, undefined, () => replace(links.tasks()))
-  }, [id])
+  }, [id, replace])
 
   const linkNodes = useRef<NodeLink[]>(null)
 
   const onSubmit = useCallback(() => {
+    // console.log('task', task)
+    // console.log('linkNodes.current', linkNodes.current)
     if (!!task && !!linkNodes.current) {
       addSolution(linkNodes.current, task.id, ({ mark }) => {
         SnackbarService.success(`Завдання виконано з оцінкою ${mark}`)
         replace(links.tasks())
       })
     }
-  }, [addSolution])
+  }, [addSolution, task, linkNodes])
 
   const child = useMemo(
     () =>
       task ? (
         <DiagramWrapper nodeDataArray={task.blocks} links={linkNodes} />
       ) : null,
-    [task]
+    [task, linkNodes]
   )
 
   return (
