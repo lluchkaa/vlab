@@ -10,9 +10,10 @@ import View from './view'
 type Props = RouteComponentProps
 
 const Tasks: React.FC<Props> = () => {
-  const { loadTasks, loadTaskResults } = useBindedActions({
+  const { loadTasks, loadTaskResults, selectTask } = useBindedActions({
     loadTasks: tasksActions.load,
     loadTaskResults: tasksActions.loadResults,
+    selectTask: tasksActions.select,
   })
 
   const isLoading = useSelector<ReduxState, boolean>(
@@ -28,6 +29,7 @@ const Tasks: React.FC<Props> = () => {
   useEffect(() => {
     loadTasks()
     loadTaskResults()
+    selectTask()
   }, [])
 
   return (

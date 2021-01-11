@@ -41,7 +41,7 @@ type LoadErrorAction = ReduxAction<ActionType.LOAD_ERROR, ErrorType>
 
 type SelectBeginAction = ReduxAction<ActionType.SELECT_BEGIN>
 
-type SelectSuccessAction = ReduxAction<ActionType.SELECT_SUCCESS, Task>
+type SelectSuccessAction = ReduxAction<ActionType.SELECT_SUCCESS, Task | null>
 
 type SelectErrorAction = ReduxAction<ActionType.SELECT_ERROR, ErrorType>
 

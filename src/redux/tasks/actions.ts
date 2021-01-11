@@ -36,7 +36,7 @@ const load = (
 }
 
 const select = (
-  id: ID,
+  id?: ID,
   onSuccess?: (task: Task | null) => void,
   onError?: ErrorCallback
 ): AppThunk<Task | null> => async (dispatch, getState) => {
@@ -47,16 +47,17 @@ const select = (
       tasks: { tasks },
     } = getState()
 
-    const task = tasks.find((task) => task.id === id)
+    const task =
+      id === undefined ? null : tasks.find((task) => task.id === id) || null
 
-    if (!task) {
+    if (id !== undefined && !task) {
       throw Error('No such task')
     }
 
     dispatch(action(ActionType.SELECT_SUCCESS, task))
 
     onSuccess?.(getState().tasks.currentTask)
-    return task
+    return task!
   } catch (error) {
     dispatch(action(ActionType.SELECT_ERROR, error))
     onError?.(error)
