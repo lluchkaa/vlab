@@ -140,7 +140,7 @@ const addSolution = (
       userId: user.id,
     }
 
-    dispatch(action(ActionType.APPEND_RESULT_SUCCESS, task))
+    dispatch(action(ActionType.APPEND_RESULT_SUCCESS, taskResult))
     onSuccess?.(taskResult)
     return taskResult
   } catch (error) {

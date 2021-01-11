@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { RouteComponentProps } from 'react-router-dom'
 
@@ -6,9 +6,11 @@ import { getId, isId } from '@services/id'
 import links from '@routes/links'
 
 import tasksActions from '@redux/tasks/actions'
-import useBindedAction from '@hooks/useBindedAction'
+import useBindedActions from '@hooks/useBindedActions'
+import SnackbarService from '@services/snackbar'
 
 import View from './view'
+import DiagramWrapper from './DiagramWrapper'
 
 interface PageParams {
   id: string
@@ -19,7 +21,10 @@ type Props = RouteComponentProps<PageParams>
 const Task: React.FC<Props> = ({ match: { params }, history: { replace } }) => {
   const id = useMemo(() => getId(params.id), [params.id])
 
-  const selectTask = useBindedAction(tasksActions.select)
+  const { select: selectTask, addSolution } = useBindedActions({
+    select: tasksActions.select,
+    addSolution: tasksActions.addSolution,
+  })
 
   const task = useSelector<ReduxState, Task | null>(
     (state) => state.tasks.currentTask
@@ -39,7 +44,30 @@ const Task: React.FC<Props> = ({ match: { params }, history: { replace } }) => {
     selectTask(id, undefined, () => replace(links.tasks()))
   }, [id])
 
-  return <View isLoading={isLoading} task={task} />
+  const linkNodes = useRef<NodeLink[]>(null)
+
+  const onSubmit = useCallback(() => {
+    if (!!task && !!linkNodes.current) {
+      addSolution(linkNodes.current, task.id, ({ mark }) => {
+        SnackbarService.success(`Завдання виконано з оцінкою ${mark}`)
+        replace(links.tasks())
+      })
+    }
+  }, [addSolution])
+
+  const child = useMemo(
+    () =>
+      task ? (
+        <DiagramWrapper nodeDataArray={task.blocks} links={linkNodes} />
+      ) : null,
+    [task]
+  )
+
+  return (
+    <View isLoading={isLoading} task={task} onSubmit={onSubmit}>
+      {child}
+    </View>
+  )
 }
 
 export default Task

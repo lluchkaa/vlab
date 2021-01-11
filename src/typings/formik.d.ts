@@ -1,1 +1,1 @@
-type Formik<Values = {}> = import('./types').Formik<Values>
+type Formik<Values = {}> = import('formik').FormikContextType<Values>
