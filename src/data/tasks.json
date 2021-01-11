@@ -1,8 +1,8 @@
 [
   {
     "id": 0,
-    "title": "Some Title",
-    "description": "Some Description",
+    "title": "Побудова діаграми",
+    "description": "Опис побудови діаграми",
     "blocks": [
       {
         "key": 0,
@@ -30,24 +30,24 @@
   },
   {
     "id": 1,
-    "title": "Some Title 1",
-    "description": "Some Description 1",
+    "title": "Базова навчальна діаграма",
+    "description": "Побудувати навчальну діаграму",
     "blocks": [
       {
         "key": 0,
-        "text": "Begin",
+        "text": "Початок",
         "color": "lightblue",
         "loc": "0 0"
       },
       {
         "key": 1,
-        "text": "Center",
+        "text": "Внутрішній блок",
         "color": "orange",
         "loc": "0 150"
       },
       {
         "key": 2,
-        "text": "End",
+        "text": "Кінець",
         "color": "lightblue",
         "loc": "0 300"
       }
@@ -55,6 +55,56 @@
     "etalon": [
       { "key": -1, "from": 0, "to": 1 },
       { "key": -2, "from": 1, "to": 2 }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Діаграма водоспадної моделі",
+    "description": "З'єднайте правильно блоки водоспадної моделі",
+    "blocks": [
+      {
+        "key": 0,
+        "text": "Визначення вимог",
+        "color": "orange",
+        "loc": "0 0"
+      },
+      {
+        "key": 1,
+        "text": "Проектування системи",
+        "color": "orange",
+        "loc": "0 50"
+      },
+      {
+        "key": 2,
+        "text": "Реалізація системи",
+        "color": "orange",
+        "loc": "0 100"
+      },
+      {
+        "key": 3,
+        "text": "Верифікція",
+        "color": "orange",
+        "loc": "0 150"
+      },
+      {
+        "key": 4,
+        "text": "Тестування",
+        "color": "orange",
+        "loc": "0 200"
+      },
+      {
+        "key": 5,
+        "text": "Супроводження",
+        "color": "orange",
+        "loc": "0 250"
+      }
+    ],
+    "etalon": [
+      { "key": -1, "from": 0, "to": 1 },
+      { "key": -2, "from": 1, "to": 2 },
+      { "key": -3, "from": 2, "to": 3 },
+      { "key": -4, "from": 3, "to": 4 },
+      { "key": -5, "from": 4, "to": 5 }
     ]
   }
 ]
