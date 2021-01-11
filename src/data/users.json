@@ -43,5 +43,14 @@
     "avatar": "",
     "type": "admin",
     "password": "123456"
+  },
+  {
+    "id": 5,
+    "firstName": "Admiin",
+    "lastName": "Admin",
+    "email": "admin@admin.com",
+    "avatar": "",
+    "type": "admin",
+    "password": "123456"
   }
 ]
