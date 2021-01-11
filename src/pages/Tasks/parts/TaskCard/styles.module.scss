@@ -42,8 +42,9 @@
 
   .bottom {
     margin-top: auto;
-    min-height: rem(30);
+    min-height: rem(45);
     .task-card-btn-link {
+      display: inline-flex;
       padding: 6px 15px;
       border: 1px solid rgba(5, 56, 107, 0.7);
       border-radius: 4px;
