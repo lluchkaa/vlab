@@ -21,13 +21,22 @@ const View: React.FC<Props> = ({ isLoading, tasks, taskResults, user }) => {
   const tasksNode = useMemo(
     () =>
       tasks.map((task) => {
-        const canRedirect =
-          isStudent &&
-          !taskResults.find(
-            (taskResult) =>
-              taskResult.userId === user?.id && taskResult.taskId === task.id
-          )
-        return <TaskCard key={task.id} task={task} canRedirect={canRedirect} />
+        const taskResult = taskResults.find(
+          (taskResult) =>
+            taskResult.userId === user?.id && taskResult.taskId === task.id
+        )
+
+        const canRedirect = isStudent && !taskResult
+        const mark = taskResult?.mark
+
+        return (
+          <TaskCard
+            key={task.id}
+            task={task}
+            canRedirect={canRedirect}
+            mark={mark}
+          />
+        )
       }),
     [tasks, isStudent]
   )
