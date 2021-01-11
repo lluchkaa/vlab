@@ -47,8 +47,6 @@ const Task: React.FC<Props> = ({ match: { params }, history: { replace } }) => {
   const linkNodes = useRef<NodeLink[]>(null)
 
   const onSubmit = useCallback(() => {
-    // console.log('task', task)
-    // console.log('linkNodes.current', linkNodes.current)
     if (!!task && !!linkNodes.current) {
       addSolution(linkNodes.current, task.id, ({ mark }) => {
         SnackbarService.success(`Завдання виконано з оцінкою ${mark}`)
