@@ -37,16 +37,7 @@
   },
   {
     "id": 4,
-    "firstName": "Anrii",
-    "lastName": "Famenka",
-    "email": "andre@gmail.com",
-    "avatar": "",
-    "type": "admin",
-    "password": "123456"
-  },
-  {
-    "id": 5,
-    "firstName": "Admiin",
+    "firstName": "Admin",
     "lastName": "Admin",
     "email": "admin@admin.com",
     "avatar": "",
